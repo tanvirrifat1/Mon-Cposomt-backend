@@ -10,6 +10,7 @@ import { NotificationRoutes } from '../app/modules/notification/notification.rou
 import { DriverRoutes } from '../app/modules/driver/driver.route';
 import { ClientRoutes } from '../app/modules/client/client.route';
 import { ArticleRoutes } from '../app/modules/article/article.route';
+import { InformativeVideoRoutes } from '../app/modules/informativeVideo/informativeVideo.route';
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ const apiRoutes = [
   { path: '/driver', route: DriverRoutes },
   { path: '/client', route: ClientRoutes },
   { path: '/article', route: ArticleRoutes },
+  { path: '/informative-video', route: InformativeVideoRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));
