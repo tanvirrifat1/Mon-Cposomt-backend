@@ -9,6 +9,7 @@ import { WishlistRoutes } from '../app/modules/wishList/wishList.route';
 import { NotificationRoutes } from '../app/modules/notification/notification.route';
 import { DriverRoutes } from '../app/modules/driver/driver.route';
 import { ClientRoutes } from '../app/modules/client/client.route';
+import { ArticleRoutes } from '../app/modules/article/article.route';
 
 const router = express.Router();
 
@@ -23,6 +24,7 @@ const apiRoutes = [
   { path: '/notification', route: NotificationRoutes },
   { path: '/driver', route: DriverRoutes },
   { path: '/client', route: ClientRoutes },
+  { path: '/article', route: ArticleRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));
