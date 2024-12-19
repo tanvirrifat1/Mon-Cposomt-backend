@@ -23,4 +23,28 @@ router.post(
   }
 );
 
+router.patch(
+  '/update/:id',
+  fileUploadHandler(),
+  auth(USER_ROLES.ADMIN),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = InformativeVideoValidation.updatedInformativeVideoSchema.parse(
+      JSON.parse(req.body.data)
+    );
+    return InformativeVideoController.updateInformationVideo(req, res, next);
+  }
+);
+
+router.get(
+  '/get-all-informative-video',
+  InformativeVideoController.getAllInformativeVideo
+);
+router.get('/:id', InformativeVideoController.getSingleInformativeVideo);
+
+router.delete(
+  '/delete/:id',
+  auth(USER_ROLES.ADMIN),
+  InformativeVideoController.deleteInformativeVideo
+);
+
 export const InformativeVideoRoutes = router;
