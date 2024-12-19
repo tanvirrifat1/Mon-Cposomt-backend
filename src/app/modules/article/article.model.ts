@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IArticle } from './article.interface';
 
 const articaleSchema = new mongoose.Schema<IArticle>(
@@ -16,14 +16,9 @@ const articaleSchema = new mongoose.Schema<IArticle>(
       required: true,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Category',
       required: true,
-    },
-    status: {
-      type: String,
-      enum: ['active', 'delete'],
-      default: 'active',
     },
   },
   {
