@@ -34,24 +34,27 @@ const createOrder = async (payload: IOrderReq) => {
 const findUsersNearLocation = async (
   longitude: number,
   latitude: number,
-  maxDistanceInMeters?: number
+  maxDistanceInMeters = 5000
 ) => {
   try {
-    const users = await User.find({
+    const orders = await Order.find({
       location: {
         $near: {
           $geometry: {
             type: 'Point',
             coordinates: [longitude, latitude],
           },
-          $maxDistance: 5000,
+          $maxDistance: maxDistanceInMeters,
         },
       },
     });
-    return users;
+
+    return orders;
   } catch (error) {
-    console.error('Error finding users near location:', error);
-    return [];
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      'Error finding users'
+    );
   }
 };
 
