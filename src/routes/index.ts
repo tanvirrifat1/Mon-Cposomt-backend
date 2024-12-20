@@ -13,6 +13,7 @@ import { ArticleRoutes } from '../app/modules/article/article.route';
 import { InformativeVideoRoutes } from '../app/modules/informativeVideo/informativeVideo.route';
 import { DeliveryTimeRoutes } from '../app/modules/deliveryTime/deliveryTime.route';
 import { UserSuspentionRoutes } from '../app/modules/userSuspention/userSuspention.route';
+import { OrderReqRoutes } from '../app/modules/orderReq/orderReq.route';
 
 const router = express.Router();
 
@@ -31,6 +32,7 @@ const apiRoutes = [
   { path: '/informative-video', route: InformativeVideoRoutes },
   { path: '/delivery-time', route: DeliveryTimeRoutes },
   { path: '/user-suspention', route: UserSuspentionRoutes },
+  { path: '/order', route: OrderReqRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));

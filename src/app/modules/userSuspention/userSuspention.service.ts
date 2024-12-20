@@ -34,7 +34,7 @@ const reactivateUsers = async () => {
 };
 
 const getUserStatus = async (userId: string) => {
-  const user = await User.findById(userId);
+  const user = await User.findById(userId).populate('driver client');
 
   if (!user) {
     throw new Error('User not found');
@@ -43,6 +43,7 @@ const getUserStatus = async (userId: string) => {
   return {
     isSuspended: user.isSuspended,
     suspensionEndDate: user.suspensionEndDate,
+    user,
   };
 };
 
