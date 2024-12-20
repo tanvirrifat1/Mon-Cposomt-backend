@@ -7,19 +7,19 @@ const router = express.Router();
 
 router.post(
   '/add/:id',
-  auth(USER_ROLES.USER),
+  auth(USER_ROLES.CLIENT),
   WishListController.createWishListToDB
 );
 router.delete(
   '/remove/:id',
-  auth(USER_ROLES.USER),
+  auth(USER_ROLES.CLIENT),
   WishListController.removeWishListToDB
 );
 
-router.get('/', auth(USER_ROLES.USER), WishListController.getAllWishListToDB);
+router.get('/', auth(USER_ROLES.CLIENT), WishListController.getAllWishListToDB);
 router.get(
   '/get-my-wishlist',
-  auth(USER_ROLES.USER),
+  auth(USER_ROLES.CLIENT),
   WishListController.getmyWishList
 );
 

@@ -6,9 +6,9 @@ import { StatusCodes } from 'http-status-codes';
 
 const createWishListToDB = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user.id;
-  const product = req.params.id;
+  const article = req.params.id;
 
-  const result = await WishListService.createWishListToDB(userId, product);
+  const result = await WishListService.createWishListToDB(userId, article);
 
   sendResponse(res, {
     success: true,
@@ -21,11 +21,11 @@ const createWishListToDB = catchAsync(async (req: Request, res: Response) => {
 const removeWishListToDB = catchAsync(async (req: Request, res: Response) => {
   try {
     const userId = req.user.id;
-    const productId = req.params.id;
+    const articleId = req.params.id;
 
     // Log the input data
 
-    const result = await WishListService.removeWishListToDB(userId, productId);
+    const result = await WishListService.removeWishListToDB(userId, articleId);
 
     if (!result) {
       return sendResponse(res, {
