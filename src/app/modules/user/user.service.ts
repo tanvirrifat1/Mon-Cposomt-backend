@@ -251,6 +251,7 @@ const getAllUsers = async (query: Record<string, unknown>) => {
     },
   };
 };
+
 const getUserProfileFromDB = async (
   user: JwtPayload
 ): Promise<Partial<IUser>> => {
@@ -293,6 +294,8 @@ const getSingleUser = async (id: string): Promise<IUser | null> => {
   const result = await User.findById(id);
   return result;
 };
+
+//user suspend
 
 export const UserService = {
   getUserProfileFromDB,

@@ -4,6 +4,9 @@ import { StatusCodes } from 'http-status-codes';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import router from './routes';
 import { Morgan } from './shared/morgen';
+import cron from 'node-cron';
+import { UserSuspentionService } from './app/modules/userSuspention/userSuspention.service';
+import { logger } from './shared/logger';
 
 const app = express();
 
@@ -18,6 +21,13 @@ app.use(
     credentials: true,
   })
 );
+
+// Run every day at midnight
+cron.schedule('* * * * *', async () => {
+  logger.info('Running daily reactivation job');
+  await UserSuspentionService.reactivateUsers();
+  logger.info('Reactivation job completed');
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

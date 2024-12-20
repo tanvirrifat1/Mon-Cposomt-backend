@@ -12,10 +12,10 @@ export type IUser = {
   verified: boolean;
   phone: string;
   image: string;
-  startTime: string;
-  endTime: string;
   client?: Types.ObjectId;
   driver?: Types.ObjectId;
+  isSuspended: boolean;
+  suspensionEndDate?: Date;
   authentication?: {
     isResetPassword: boolean;
     oneTimeCode: number;

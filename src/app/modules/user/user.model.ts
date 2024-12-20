@@ -35,12 +35,9 @@ const userSchema = new Schema<IUser, UserModal>(
     address: {
       type: String,
     },
-    endTime: {
-      type: String,
-    },
-    startTime: {
-      type: String,
-    },
+
+    isSuspended: { type: Boolean, default: false },
+    suspensionEndDate: { type: Date, default: null },
     firstName: {
       type: String,
     },
