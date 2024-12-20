@@ -27,9 +27,13 @@ const getAllArticle = async (query: Record<string, unknown>) => {
 
   // Add searchTerm condition if present
   if (searchTerm) {
-    anyConditions.push({
-      $or: [{ title: { $regex: searchTerm, $options: 'i' } }],
-    });
+    const categoriesIds = await Category.find({
+      name: { $regex: searchTerm, $options: 'i' },
+    }).distinct('_id');
+
+    if (categoriesIds.length > 0) {
+      anyConditions.push({ category: { $in: categoriesIds } });
+    }
   }
 
   // Filter by additional filterData fields
