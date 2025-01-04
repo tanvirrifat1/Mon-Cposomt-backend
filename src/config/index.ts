@@ -10,6 +10,8 @@ export default {
   bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
   stripe_api_secret: process.env.STRIPE_SECRET_KEY,
   google_maps: process.env.GOOGLE_MAPS,
+  twilio_sid: process.env.TWILIO_SID,
+  twilio_auth_token: process.env.TWILIO_AUTH_TOKEN,
   jwt: {
     jwt_secret: process.env.JWT_SECRET,
     jwt_expire_in: process.env.JWT_EXPIRE_IN,

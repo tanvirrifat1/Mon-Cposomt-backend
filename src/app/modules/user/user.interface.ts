@@ -12,7 +12,6 @@ export type IUser = {
   verified: boolean;
   phone: string;
   image: string;
-
   appId?: string;
   fcmToken?: string;
   isSuspended: boolean;
