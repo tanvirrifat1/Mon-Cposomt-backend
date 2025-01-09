@@ -22,10 +22,24 @@ const createArticaleToDB = async (payload: Partial<IArticle>) => {
 };
 
 const getAllArticle = async (query: Record<string, unknown>) => {
-  const { searchTerm, page, limit, ...filterData } = query;
-  const anyConditions: any[] = [{ status: 'active' }];
+  const { searchTerm, title, page, limit, ...filterData } = query;
+  const anyConditions: any[] = [];
 
-  // Add searchTerm condition if present
+  if (title) {
+    anyConditions.push({ title: title });
+  }
+
+  // Add searchTerm condition for other fields if present
+  if (searchTerm) {
+    const categoriesIds = await Category.find({
+      name: { $regex: searchTerm, $options: 'i' },
+    }).distinct('_id');
+
+    if (categoriesIds.length > 0) {
+      anyConditions.push({ category: { $in: categoriesIds } });
+    }
+  }
+
   if (searchTerm) {
     const categoriesIds = await Category.find({
       name: { $regex: searchTerm, $options: 'i' },
@@ -53,12 +67,13 @@ const getAllArticle = async (query: Record<string, unknown>) => {
   const size = parseInt(limit as string) || 10;
   const skip = (pages - 1) * size;
 
-  // Fetch Category data
+  // Fetch campaigns
   const result = await Article.find(whereConditions)
     .populate({
       path: 'category',
       select: 'name',
     })
+
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(size)

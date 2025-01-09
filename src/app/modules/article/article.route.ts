@@ -10,7 +10,7 @@ const router = express.Router();
 router.post(
   '/create-article',
   fileUploadHandler(),
-  auth(USER_ROLES.ADMIN),
+  // auth(USER_ROLES.ADMIN),
   (req: Request, res: Response, next: NextFunction) => {
     if (req.body.data) {
       req.body = ArticleValidation.ArticleSchema.parse(
@@ -28,7 +28,7 @@ router.get('/get-all-article/:id', ArticleController.getSingleArticle);
 router.patch(
   '/update-article/:id',
   fileUploadHandler(),
-  auth(USER_ROLES.ADMIN),
+  // auth(USER_ROLES.ADMIN),
   (req: Request, res: Response, next: NextFunction) => {
     if (req.body.data) {
       req.body = ArticleValidation.ArticleSchemaUpdated.parse(

@@ -8,58 +8,6 @@ import { isTimeWithinRange } from '../../../shared/timeConvert';
 import { sendNotifications } from '../../../helpers/notificationHelper';
 import { Driver } from '../driver/driver.model';
 
-// const createOrderConfirmed = async (payload: Partial<IDeliveryCofirmation>) => {
-//   const isOrder = await Order.findById(payload.orderId);
-//   if (!isOrder) {
-//     throw new ApiError(StatusCodes.BAD_REQUEST, 'Order not found!');
-//   }
-
-//   const currentDay = new Date().toLocaleString('en-US', { weekday: 'long' });
-//   const currentTime = new Date().toLocaleTimeString('en-US', {
-//     hour: '2-digit',
-//     minute: '2-digit',
-//     hour12: true,
-//   });
-
-//   const schedule = await Schedule.findOne({ day: currentDay });
-
-//   console.log(schedule);
-
-//   if (!schedule || schedule.isOff) {
-//     throw new ApiError(StatusCodes.BAD_REQUEST, 'Deliveries are off today.');
-//   }
-
-//   if (!isTimeWithinRange(currentTime, schedule.startTime, schedule.endTime)) {
-//     throw new ApiError(
-//       StatusCodes.BAD_REQUEST,
-//       `Deliveries allowed between ${schedule.startTime} and ${schedule.endTime} on ${currentDay}.`
-//     );
-//   }
-
-//   const result = await DeliveryCofirmation.create(payload);
-
-//   if (!result) {
-//     throw new ApiError(
-//       StatusCodes.BAD_REQUEST,
-//       'DeliveryCofirmation not created!'
-//     );
-//   }
-
-//   if (result.status === 'delivered') {
-//     const updatedOrder = await Order.findOneAndUpdate(
-//       { _id: payload.orderId },
-//       { $set: { status: 'completed' } },
-//       { new: true }
-//     );
-
-//     if (!updatedOrder) {
-//       throw new ApiError(StatusCodes.BAD_REQUEST, 'Order not found!');
-//     }
-//   }
-
-//   return result;
-// };
-
 const createOrderConfirmed = async (payload: Partial<IDeliveryCofirmation>) => {
   const isOrder = await Order.findById(payload.orderId);
   if (!isOrder) {

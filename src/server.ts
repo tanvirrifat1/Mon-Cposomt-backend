@@ -6,6 +6,7 @@ import config from './config';
 import seedAdmin from './DB';
 import { socketHelper } from './helpers/socketHelper';
 import { errorLogger, logger } from './shared/logger';
+import { connectRedis } from './shared/redis';
 
 //uncaught exception
 process.on('uncaughtException', error => {
@@ -16,6 +17,7 @@ process.on('uncaughtException', error => {
 let server: any;
 async function main() {
   try {
+    await connectRedis();
     seedAdmin();
     mongoose.connect(config.database_url as string);
     logger.info(colors.green('🚀 Database connected successfully'));

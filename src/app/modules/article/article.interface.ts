@@ -5,4 +5,5 @@ export type IArticle = {
   description: string;
   image: string;
   category: Types.ObjectId;
+  status: 'active' | 'delete';
 };

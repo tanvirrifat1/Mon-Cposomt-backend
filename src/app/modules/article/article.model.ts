@@ -20,6 +20,11 @@ const articaleSchema = new mongoose.Schema<IArticle>(
       ref: 'Category',
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['active', 'delete'],
+      default: 'active',
+    },
   },
   {
     timestamps: true,

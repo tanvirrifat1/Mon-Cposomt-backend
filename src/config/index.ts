@@ -12,6 +12,11 @@ export default {
   google_maps: process.env.GOOGLE_MAPS,
   twilio_sid: process.env.TWILIO_SID,
   twilio_auth_token: process.env.TWILIO_AUTH_TOKEN,
+  redis_url: process.env.REDIS_URL,
+  redis_port: process.env.REDIS_PORT,
+  redis_password: process.env.REDIS_PASSWORD,
+  redis_host: process.env.REDIS_HOST,
+  redis_db: process.env.REDIS_DB,
   jwt: {
     jwt_secret: process.env.JWT_SECRET,
     jwt_expire_in: process.env.JWT_EXPIRE_IN,
