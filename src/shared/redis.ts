@@ -24,7 +24,6 @@
 
 import Redis from 'ioredis';
 import { logger } from './logger';
-import config from '../config';
 
 // Initialize Redis client
 const redisClient = new Redis({
